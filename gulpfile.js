@@ -7,6 +7,7 @@ let gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps'),
 	neat       = require("bourbon-neat").includePaths,
+	connect = require('gulp-connect'),
 	del = require('del');
 
 gulp.task('concatScripts',['clean'], ()=> {
@@ -48,6 +49,10 @@ gulp.task('build',['minifyScripts', 'sass'], ()=>{
 	return gulp.src(["css/site.css", "js/site.min.js", 'index.html',
 						"img/**", "fonts/**"], { base: './'})
 			.pipe(gulp.dest('dist'));
+});
+
+gulp.task('connect', ()=>{
+	connect.server();
 });
 
 gulp.task('serve', ['watchFiles']);
